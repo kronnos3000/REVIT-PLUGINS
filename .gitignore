@@ -1,0 +1,38 @@
+# Build output
+**/bin/
+**/obj/
+WindCalc/dist/
+
+# Visual Studio / Rider
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+
+# NuGet
+packages/
+*.nupkg
+
+# Local data downloads (FEMA shapefiles, parcel CSVs, land cover rasters — ~600 MB)
+WindCalc/LocalData/flood_zones/
+WindCalc/LocalData/land_cover/
+WindCalc/LocalData/parcels/
+
+# Secrets (ASCE Hazard Tool bearer token etc.)
+**/config.json
+**/appsettings.*.json
+**/*.secret.*
+.env
+.env.*
+
+# OS
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Large binary design assets that shouldn't live in git history
+*.tif
+*.tiff

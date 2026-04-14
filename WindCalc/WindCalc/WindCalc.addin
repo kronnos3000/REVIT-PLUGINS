@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+
+  <!-- Application (ribbon setup) -->
+  <AddIn Type="Application">
+    <Name>Wind Calculator</Name>
+    <Assembly>WindCalc.dll</Assembly>
+    <FullClassName>WindCalc.App</FullClassName>
+    <ClientId>C1D2E3F4-A5B6-7890-CDEF-012345678902</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Wind Calculator Command -->
+  <AddIn Type="Command">
+    <Name>Wind Calculator</Name>
+    <Assembly>WindCalc.dll</Assembly>
+    <FullClassName>WindCalc.Commands.WindCalcCommand</FullClassName>
+    <ClientId>C1D2E3F4-A5B6-7890-CDEF-012345678903</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Setup Local Data Command -->
+  <AddIn Type="Command">
+    <Name>Setup Wind Data</Name>
+    <Assembly>WindCalc.dll</Assembly>
+    <FullClassName>WindCalc.Commands.SetupLocalDataCommand</FullClassName>
+    <ClientId>C1D2E3F4-A5B6-7890-CDEF-012345678904</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+</RevitAddIns>
