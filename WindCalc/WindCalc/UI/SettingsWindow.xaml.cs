@@ -22,7 +22,8 @@ namespace WindCalc.UI
             _config = config;
             Title   = "Wind Calculator \u2013 Settings";
             Width   = 560;
-            Height  = 370;
+            MinHeight     = 420;
+            SizeToContent = SizeToContent.Height;
             ResizeMode            = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 

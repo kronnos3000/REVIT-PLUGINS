@@ -74,7 +74,7 @@ namespace WindCalc.UI
             string editionLabel = config.CodeEdition == "9th" ? "FBC 2026" : "FBC 2023";
             Title                 = $"Wind Calculator \u2013 ASCE 7-22 / {editionLabel}";
             Width                 = 680;
-            Height                = 660;
+            Height                = 700;
             ResizeMode            = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Background            = new SolidColorBrush(Color.FromRgb(0xF5, 0xF5, 0xF5));
@@ -88,17 +88,67 @@ namespace WindCalc.UI
 
         // ── Window construction ───────────────────────────────────────────────
 
+        private RadioButton _rb9th, _rb8th;
+
         private void BuildWindow()
         {
             var root = new Grid { Margin = new Thickness(12) };
+            root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // ── Header: edition picker (top-right) ───────────────────────────
+            var header = new Grid { Margin = new Thickness(0, 0, 0, 8) };
+            header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            var lblHeader = new TextBlock
+            {
+                Text                = "Florida Building Code:",
+                FontWeight          = FontWeights.SemiBold,
+                VerticalAlignment   = VerticalAlignment.Center,
+                Margin              = new Thickness(2, 0, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+            Grid.SetColumn(lblHeader, 0);
+            header.Children.Add(lblHeader);
+
+            var editionPanel = new StackPanel
+            {
+                Orientation         = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment   = VerticalAlignment.Center
+            };
+            _rb8th = new RadioButton
+            {
+                Content           = "8th Edition (FBC 2023)",
+                GroupName         = "CodeEdition",
+                Margin            = new Thickness(0, 0, 16, 0),
+                VerticalAlignment = VerticalAlignment.Center,
+                IsChecked         = _config.CodeEdition == "8th"
+            };
+            _rb9th = new RadioButton
+            {
+                Content           = "9th Edition (FBC 2026)",
+                GroupName         = "CodeEdition",
+                VerticalAlignment = VerticalAlignment.Center,
+                IsChecked         = _config.CodeEdition != "8th"
+            };
+            _rb8th.Checked += (s, e) => OnEditionChanged("8th");
+            _rb9th.Checked += (s, e) => OnEditionChanged("9th");
+            editionPanel.Children.Add(_rb8th);
+            editionPanel.Children.Add(_rb9th);
+            Grid.SetColumn(editionPanel, 1);
+            header.Children.Add(editionPanel);
+
+            Grid.SetRow(header, 0);
+            root.Children.Add(header);
 
             TabMain = new TabControl();
             TabMain.Items.Add(BuildSiteTab());
             TabMain.Items.Add(BuildBuildingTab());
             TabMain.Items.Add(BuildResultsTab());
-            Grid.SetRow(TabMain, 0);
+            Grid.SetRow(TabMain, 1);
             root.Children.Add(TabMain);
 
             // Bottom button bar
@@ -127,10 +177,26 @@ namespace WindCalc.UI
             btnBar.Children.Add(btnApply);
             // Store reference
             _btnApply = btnApply;
-            Grid.SetRow(btnBar, 1);
+            Grid.SetRow(btnBar, 2);
             root.Children.Add(btnBar);
 
             Content = root;
+        }
+
+        // Edition radio handler — updates Config (which flows into Result on Apply),
+        // retitles the window, and refreshes the Results-tab edition row.
+        private void OnEditionChanged(string edition)
+        {
+            if (_config.CodeEdition == edition) return;
+            _config.CodeEdition = edition;
+            string editionLabel = edition == "9th" ? "FBC 2026" : "FBC 2023";
+            Title = $"Wind Calculator \u2013 ASCE 7-22 / {editionLabel}";
+            if (PrvCodeEdition != null)
+            {
+                PrvCodeEdition.Text = edition == "9th"
+                    ? "FBC 9th Edition (2026)"
+                    : "FBC 8th Edition (2023)";
+            }
         }
 
         private Button _btnApply;
