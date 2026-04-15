@@ -36,3 +36,14 @@ $RECYCLE.BIN/
 # Large binary design assets that shouldn't live in git history
 *.tif
 *.tiff
+
+# Claude Code (user-local — not portable to other machines)
+.claude/
+
+# Unrelated pyRevit extensions folder that happens to live under this tree
+/pyRevit/
+
+# Reference documents kept locally; not part of the source tree
+/*.docx
+/*.pdf
+/*.xlsx
