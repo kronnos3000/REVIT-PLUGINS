@@ -15,8 +15,8 @@ namespace WindCalc.Services
     public static class UpdateChecker
     {
         // Owner/repo of the GitHub repository that publishes WindCalc releases.
-        private const string GitHubOwner = "ConstructionCorps";
-        private const string GitHubRepo  = "WindCalc";
+        private const string GitHubOwner = "kronnos3000";
+        private const string GitHubRepo  = "REVIT-PLUGINS";
 
         private static readonly HttpClient Http = BuildClient();
 
