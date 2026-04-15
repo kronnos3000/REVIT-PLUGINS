@@ -11,7 +11,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>disable</Nullable>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Company>Construction Corps</Company>
     <Product>WindCalc</Product>
   </PropertyGroup>

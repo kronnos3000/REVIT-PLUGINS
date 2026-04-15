@@ -1,0 +1,4 @@
+# Private signing key — never commit. Regenerate on a new build machine by
+# re-running the New-SelfSignedCertificate command in README.md, or copy
+# the PFX from your existing build machine via a secure channel.
+*.pfx

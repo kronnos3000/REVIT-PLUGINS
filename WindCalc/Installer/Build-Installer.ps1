@@ -45,4 +45,33 @@ Write-Host "Compiling installer v$Version ..." -ForegroundColor Cyan
 if ($LASTEXITCODE -ne 0) { Write-Host "Installer compile FAILED." -ForegroundColor Red; exit 1 }
 
 $setupExe = Join-Path $DistRoot "installer\WindCalc-Setup-$Version.exe"
+
+# ── Code signing ──────────────────────────────────────────────────────────
+# Sign with the Construction Corps self-signed cert if the PFX is present.
+# Target machines must have ConstructionCorps.cer imported into LocalMachine\Root
+# (see WindCalc\Installer\signing\Trust-ConstructionCorpsCert.ps1).
+$pfx = Join-Path $PSScriptRoot "signing\ConstructionCorps.pfx"
+if (Test-Path $pfx) {
+    $signtoolCandidates = @(
+        "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe",
+        "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe",
+        "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe",
+        "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe"
+    )
+    $signtool = $signtoolCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+    if (-not $signtool) {
+        $signtool = (Get-ChildItem -Path "${env:ProgramFiles(x86)}\Windows Kits" -Recurse -Filter signtool.exe -ErrorAction SilentlyContinue |
+                     Where-Object { $_.FullName -like '*x64*' } | Select-Object -First 1 -ExpandProperty FullName)
+    }
+    if ($signtool) {
+        Write-Host "Signing $setupExe ..." -ForegroundColor Cyan
+        & $signtool sign /f $pfx /p "changeme" /fd SHA256 /tr "http://timestamp.digicert.com" /td SHA256 /d "WindCalc" $setupExe
+        if ($LASTEXITCODE -ne 0) { Write-Host "signtool FAILED." -ForegroundColor Red; exit 1 }
+    } else {
+        Write-Host "signtool.exe not found; installer will be unsigned. Install the Windows 10/11 SDK to enable signing." -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "No signing\\ConstructionCorps.pfx present; installer will be unsigned." -ForegroundColor Yellow
+}
+
 Write-Host "Installer built: $setupExe" -ForegroundColor Green
