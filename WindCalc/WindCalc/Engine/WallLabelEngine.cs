@@ -112,7 +112,7 @@ namespace WindCalc.Engine
         private static List<ElementId> PickWallsInOrder(UIDocument uidoc)
         {
             var ids  = new List<ElementId>();
-            var seen = new HashSet<int>();
+            var seen = new HashSet<long>();
             var filt = new WallFilter();
 
             while (true)
@@ -125,9 +125,9 @@ namespace WindCalc.Engine
 
                     if (SkipDuplicates)
                     {
-                        int intId = r.ElementId.IntegerValue;
-                        if (seen.Contains(intId)) continue;
-                        seen.Add(intId);
+                        long elemId = r.ElementId.Value;
+                        if (seen.Contains(elemId)) continue;
+                        seen.Add(elemId);
                     }
                     ids.Add(r.ElementId);
                 }

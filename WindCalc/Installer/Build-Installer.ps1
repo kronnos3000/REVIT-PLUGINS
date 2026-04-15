@@ -13,9 +13,15 @@ $Iss       = Join-Path $PSScriptRoot "WindCalc.iss"
 $DistRoot  = Join-Path $RepoRoot "dist"
 $BuildAll  = Join-Path $RepoRoot "Build-All.ps1"
 
-$iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
-if (-not (Test-Path $iscc)) {
-    $iscc = (Get-Command iscc.exe -ErrorAction SilentlyContinue)?.Path
+$isccCandidates = @(
+    "C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
+    "C:\Program Files\Inno Setup 6\ISCC.exe",
+    "$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe"
+)
+$iscc = $isccCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $iscc) {
+    $cmd = Get-Command iscc.exe -ErrorAction SilentlyContinue
+    if ($cmd) { $iscc = $cmd.Path }
 }
 if (-not $iscc -or -not (Test-Path $iscc)) {
     Write-Host "Inno Setup (iscc.exe) not found. Install it from https://jrsoftware.org/isdl.php" -ForegroundColor Red

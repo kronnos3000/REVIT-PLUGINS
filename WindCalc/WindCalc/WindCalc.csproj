@@ -21,7 +21,8 @@
     <RevitYear Condition="'$(RevitYear)' == ''">2025</RevitYear>
     <DefineConstants>$(DefineConstants);REVIT$(RevitYear)</DefineConstants>
     <OutputPath>bin\$(Configuration)\$(RevitYear)\</OutputPath>
-    <RevitApiPath>$(REVIT_$(RevitYear)_API_PATH)</RevitApiPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RevitApiPath>$([System.Environment]::GetEnvironmentVariable('REVIT_$(RevitYear)_API_PATH'))</RevitApiPath>
   </PropertyGroup>
 
   <ItemGroup>

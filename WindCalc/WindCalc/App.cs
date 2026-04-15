@@ -1,13 +1,13 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using WindCalc.Engine;
 using WindCalc.Models;
@@ -100,8 +100,12 @@ namespace WindCalc
                 // ── Plugin version check (GitHub Releases) ────────────────────
                 // Prompt at shutdown only — ApplicationClosing fires while the
                 // main window is still alive; OnShutdown is too late for UI.
+                // ApplicationClosingEventArgs is internal in Revit 2025+, so we
+                // subscribe via a lambda whose args type is inferred — no need
+                // to name the inaccessible type. Unsubscription is skipped: the
+                // ControlledApplication is being torn down with the process.
                 _controlledApp = application.ControlledApplication;
-                _controlledApp.ApplicationClosing += OnRevitClosing;
+                SubscribeApplicationClosing(_controlledApp);
                 TriggerVersionCheck();
 
                 return Result.Succeeded;
@@ -115,17 +119,31 @@ namespace WindCalc
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            if (_controlledApp != null)
-            {
-                _controlledApp.ApplicationClosing -= OnRevitClosing;
-                _controlledApp = null;
-            }
             return Result.Succeeded;
         }
 
         // ── Shutdown-time update prompt ───────────────────────────────────────
 
-        private static void OnRevitClosing(object sender, ApplicationClosingEventArgs e)
+        // ApplicationClosingEventArgs is internal in Revit 2025+, which makes
+        // the event itself inaccessible to the C# compiler. Subscribe via
+        // reflection + Expression.Lambda so we never reference the type by name.
+        private static void SubscribeApplicationClosing(ControlledApplication ctrl)
+        {
+            var evt = ctrl.GetType().GetEvent("ApplicationClosing");
+            if (evt == null) return;
+            var argsType   = evt.EventHandlerType.GetGenericArguments()[0];
+            var senderParm = Expression.Parameter(typeof(object), "s");
+            var argsParm   = Expression.Parameter(argsType, "e");
+            var callTarget = typeof(App).GetMethod(
+                nameof(OnRevitClosing),
+                BindingFlags.NonPublic | BindingFlags.Static,
+                null, Type.EmptyTypes, null);
+            var body   = Expression.Call(callTarget);
+            var lambda = Expression.Lambda(evt.EventHandlerType, body, senderParm, argsParm);
+            evt.AddEventHandler(ctrl, lambda.Compile());
+        }
+
+        private static void OnRevitClosing()
         {
             var info = PendingUpdate;
             if (info == null || string.IsNullOrEmpty(info.LocalInstallerPath) ||
