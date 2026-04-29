@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>CCorpPrint</RootNamespace>
+    <AssemblyName>CCorpPrint</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>1.0.0</Version>
+    <Company>Construction Corps</Company>
+    <Product>CCorpPrint</Product>
+  </PropertyGroup>
+
+  <!-- Target Revit year (override with /p:RevitYear=2027). Defaults to 2025. -->
+  <!-- Supported years for this project: 2025, 2027. -->
+  <PropertyGroup>
+    <RevitYear Condition="'$(RevitYear)' == ''">2025</RevitYear>
+    <DefineConstants>$(DefineConstants);REVIT$(RevitYear)</DefineConstants>
+    <OutputPath>bin\$(Configuration)\$(RevitYear)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RevitApiPath>$([System.Environment]::GetEnvironmentVariable('REVIT_$(RevitYear)_API_PATH'))</RevitApiPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="ReachFramework" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitApiPath)\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitApiPath)\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CCorpPrint.addin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="VerifyRevitApiPath" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(RevitApiPath)' == '' Or !Exists('$(RevitApiPath)\RevitAPI.dll')"
+           Text="Revit API DLLs not found for year $(RevitYear). Expected env var REVIT_$(RevitYear)_API_PATH to point at a folder containing RevitAPI.dll (got '$(RevitApiPath)')." />
+    <Error Condition="'$(RevitYear)' != '2025' And '$(RevitYear)' != '2027'"
+           Text="CCorpPrint v1 supports Revit 2025 and 2027 only. Got RevitYear='$(RevitYear)'." />
+  </Target>
+
+</Project>
