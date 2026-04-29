@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+
+  <!-- Application (ribbon setup) -->
+  <AddIn Type="Application">
+    <Name>CCorp Print</Name>
+    <Assembly>CCorpPrint.dll</Assembly>
+    <FullClassName>CCorpPrint.App</FullClassName>
+    <ClientId>3E0F9364-43CA-48C7-B6FB-CD6BA4177FEA</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Print Sheets Command -->
+  <AddIn Type="Command">
+    <Name>Print Sheets</Name>
+    <Assembly>CCorpPrint.dll</Assembly>
+    <FullClassName>CCorpPrint.Commands.PrintSheetsCommand</FullClassName>
+    <ClientId>B1E78A4F-687B-4527-88B7-7AD9B51FE53D</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Naming Templates Command -->
+  <AddIn Type="Command">
+    <Name>Naming Templates</Name>
+    <Assembly>CCorpPrint.dll</Assembly>
+    <FullClassName>CCorpPrint.Commands.NamingTemplatesCommand</FullClassName>
+    <ClientId>ED1073B3-6331-4603-B72D-6BE9519CE912</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Print Settings Command -->
+  <AddIn Type="Command">
+    <Name>Print Settings</Name>
+    <Assembly>CCorpPrint.dll</Assembly>
+    <FullClassName>CCorpPrint.Commands.SettingsCommand</FullClassName>
+    <ClientId>94E2814A-BA3C-4A6B-9D53-185B6C64C1D7</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+</RevitAddIns>
