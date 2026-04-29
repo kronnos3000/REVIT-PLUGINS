@@ -3,7 +3,7 @@
 # into WindCalc/dist/<year>/ for the installer to consume.
 
 param(
-    [string[]]$Years = @("2024","2025","2026","2027"),
+    [string[]]$Years = @("2025","2027"),
     [string]$Config  = "Release"
 )
 

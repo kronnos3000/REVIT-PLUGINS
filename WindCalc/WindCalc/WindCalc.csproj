@@ -72,6 +72,8 @@
   <Target Name="VerifyRevitApiPath" BeforeTargets="ResolveAssemblyReferences">
     <Error Condition="'$(RevitApiPath)' == '' Or !Exists('$(RevitApiPath)\RevitAPI.dll')"
            Text="Revit API DLLs not found for year $(RevitYear). Expected env var REVIT_$(RevitYear)_API_PATH to point at a folder containing RevitAPI.dll (got '$(RevitApiPath)')." />
+    <Error Condition="'$(RevitYear)' != '2025' And '$(RevitYear)' != '2027'"
+           Text="WindCalc v1.2+ supports Revit 2025 and 2027 only. Got RevitYear='$(RevitYear)'." />
   </Target>
 
 </Project>
