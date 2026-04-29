@@ -17,6 +17,8 @@ namespace WindCalc.Services
         // Owner/repo of the GitHub repository that publishes WindCalc releases.
         private const string GitHubOwner = "kronnos3000";
         private const string GitHubRepo  = "REVIT-PLUGINS";
+        // Releases bundle multiple plugin installers; pick the WindCalc one by name prefix.
+        private const string AssetPrefix = "WindCalc-Setup";
 
         private static readonly HttpClient Http = BuildClient();
 
@@ -47,7 +49,8 @@ namespace WindCalc.Services
             foreach (var asset in (JArray)rel["assets"])
             {
                 var name = (string)asset["name"] ?? "";
-                if (name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                if (name.StartsWith(AssetPrefix, StringComparison.OrdinalIgnoreCase) &&
+                    name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 {
                     downloadUrl = (string)asset["browser_download_url"];
                     break;
