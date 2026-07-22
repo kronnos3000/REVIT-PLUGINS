@@ -1,0 +1,65 @@
+Comment,Target,Status,Match
+1 - NEC edition (code table),-,MISSED,no element contained: National Electrical Code (NFPA 70)	2023
+1 - NEC edition (E-001 general note),-,MISSED,"no element contained: Code (NFPA 70), 2023 Edition, as adopted by the Florida"
+2 - Emergency disconnect citation,TextNote 1638462,WOULD APPLY,NEC 555.34
+2 - Emergency disconnect citation,TextNote 1675036,WOULD APPLY,NEC 555.34
+2 - Emergency disconnect citation,TextNote 1675535,WOULD APPLY,NEC 555.34
+2 - Emergency disconnect citation,TextNote 1676845,WOULD APPLY,NEC 555.34
+2 - Emergency disconnect citation,TextNote 1693783,WOULD APPLY,NEC 555.34
+2 - Emergency disconnect citation,TextNote 1698633,WOULD APPLY,NEC 555.34
+5 - NFPA edition years,-,MISSED,no element contained: NFPA 303 --- Marinas & Boatyards	CURRENT
+5 - NFPA 70E edition,-,MISSED,no element contained: NFPA 70E --- Electrical Safety in Workplace	CURRENT
+6 - Numeric DFE,-,MISSED,no element contained: BFE + freeboard
+6 - City freeboard row,TextNote 1632413,WOULD APPLY,Per Madeira Beach Code
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661663,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661667,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661694,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661696,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661698,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661700,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661702,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661704,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1661706,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667395,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667404,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667436,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667438,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667440,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667442,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667444,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667446,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal feeders add neutral (P1-P9),TextNote 1667448,WOULD APPLY,2#6 + #10G THWN-2 Cu
+9 - Pedestal schedule compact notation,TextNote 1683532,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684454,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684463,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684472,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684481,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684490,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684499,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684508,WOULD APPLY,2#6+#10G
+9 - Pedestal schedule compact notation,TextNote 1684517,WOULD APPLY,2#6+#10G
+9/12 - P10 feeder add neutral + upsized EGC,TextNote 1661709,WOULD APPLY,2#4 + #10G THWN-2 Cu
+9/12 - P10 feeder add neutral + upsized EGC,TextNote 1667477,WOULD APPLY,2#4 + #10G THWN-2 Cu
+9/12 - P10 compact notation,TextNote 1684577,WOULD APPLY,2#4+#10G
+9 - Pedestal interior detail stub-up,-,MISSED,"no element contained: 2#6 + #10G
+THWN-2 Cu"
+10 - Service conductors parallel sets,-,MISSED,"no element contained: 3#350 kcmil Cu THWN-2 + #1/0 N + #1/0 G
+in 3"" PVC SCH 80, U.G., ±40 LF"
+10 - Feeder schedule F-SVC row,TextNote 1667264,WOULD APPLY,3#350+#1/0N+#1/0G THWN-2 Cu
+10 - Feeder schedule F-SVC row,TextNote 1667329,WOULD APPLY,3#350+#1/0N+#1/0G THWN-2 Cu
+11 - GEC size,-,MISSED,no element contained: GEC (SERVICE)	#10 CU
+11 - MBJ size,-,MISSED,no element contained: MAIN BONDING JMP	#10 CU
+11 - Riser callouts,-,MISSED,"no element contained: NEC #10 Cu
+(NEC 250.66, 555.36)"
+13 - Demand current,-,MISSED,no element contained: 411 A
+13 - G-001 service data demand,TextNote 1632437,WOULD APPLY,109.1 kVA (455 A)
+13 - G-001 utilization,-,MISSED,no element contained: Service Utilization	76%
+16 - Feeder-level GFPE to 100 mA (panel schedule),-,MISSED,no element contained: 2P/50A	30 mA
+16 - Single-line feeder breakers,-,MISSED,"no element contained: 50A/2P
+GFPE 30mA"
+19 - Meter form,TextNote 1632419,WOULD APPLY,Form 9S
+19 - Meter form,TextNote 1659688,WOULD APPLY,Form 9S
+19 - Meter form,TextNote 1669814,WOULD APPLY,Form 9S
+19 - Cover sheet OCR-variant,-,MISSED,no element contained: Form 95
+15 - Leakage current measurement device,View PANEL SCHEDULE,WOULD PLACE NOTE,LK-1  LEAKAGE CURRENT MEASUREMENT DEVICE PER NEC 2020 555.35
+17 - Electrical datum plane,View PEDESTAL MOUNTING DETAIL & SCHEDULE,WOULD PLACE NOTE,"ELECTRICAL DATUM PLANE (NEC 555): 2'-0"" ABOVE HIGHEST HIGH T"

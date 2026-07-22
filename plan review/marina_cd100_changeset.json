@@ -1,0 +1,199 @@
+{
+  "_readme": [
+    "Changeset for Beach Builders Marina Ph1 CD90 -> CD100 per mock CBO review 07/2026.",
+    "Each entry: comment (review item #), scope (sheet numbers or 'ALL'), find, replace, notes.",
+    "Matching is exact substring, case-sensitive. Run DRY_RUN first and read the audit.",
+    "Entries with VERIFY require EOR confirmation before the live run."
+  ],
+  "replacements": [
+    {
+      "comment": "1 - NEC edition (code table)",
+      "scope": ["G-001"],
+      "find": "National Electrical Code (NFPA 70)\t2023",
+      "replace": "National Electrical Code (NFPA 70)\t2020",
+      "notes": "If code table uses separate cells, the pair below catches the standalone value."
+    },
+    {
+      "comment": "1 - NEC edition (E-001 general note)",
+      "scope": ["E-001"],
+      "find": "Code (NFPA 70), 2023 Edition, as adopted by the Florida",
+      "replace": "Code (NFPA 70), 2020 Edition, as adopted by the Florida",
+      "notes": ""
+    },
+    {
+      "comment": "2 - Emergency disconnect citation",
+      "scope": ["ALL"],
+      "find": "NEC 555.34",
+      "replace": "NEC 555.36(C) [2023] (PROVIDED AS ENHANCEMENT; NOT REQUIRED BY ADOPTED NEC 2020)",
+      "notes": "Hits G-002 7.3, E-101 keynote 7, E-601 labels. CAUTION: if any legitimate 555.34 wiring-method reference exists, exclude that sheet from scope."
+    },
+    {
+      "comment": "5 - NFPA edition years",
+      "scope": ["G-001"],
+      "find": "NFPA 303 --- Marinas & Boatyards\tCURRENT",
+      "replace": "NFPA 303 --- Marinas & Boatyards\t2021",
+      "notes": "VERIFY edition year."
+    },
+    {
+      "comment": "5 - NFPA 70E edition",
+      "scope": ["G-001"],
+      "find": "NFPA 70E --- Electrical Safety in Workplace\tCURRENT",
+      "replace": "NFPA 70E --- Electrical Safety in Workplace\t2021",
+      "notes": "VERIFY edition year."
+    },
+    {
+      "comment": "6 - Numeric DFE",
+      "scope": ["G-001"],
+      "find": "BFE + freeboard",
+      "replace": "13.0 FT NAVD88 (BFE 11.0 + 2.0 FT CITY FREEBOARD)",
+      "notes": "VERIFY Madeira Beach freeboard value against current floodplain ordinance before running."
+    },
+    {
+      "comment": "6 - City freeboard row",
+      "scope": ["G-001"],
+      "find": "Per Madeira Beach Code",
+      "replace": "+2.0 FT (MADEIRA BEACH FLOODPLAIN ORDINANCE) - VERIFY",
+      "notes": "VERIFY."
+    },
+    {
+      "comment": "9 - Pedestal feeders add neutral (P1-P9)",
+      "scope": ["E-201", "E-301", "E-501"],
+      "find": "2#6 + #10G THWN-2 Cu",
+      "replace": "3#6 + #10G THWN-2 Cu",
+      "notes": "Covers feeder schedule rows F-P1..F-P9, panel schedule conductor column, pedestal schedule FEEDER column (2#6+#10G variant below)."
+    },
+    {
+      "comment": "9 - Pedestal schedule compact notation",
+      "scope": ["E-501"],
+      "find": "2#6+#10G",
+      "replace": "3#6+#10G",
+      "notes": ""
+    },
+    {
+      "comment": "9/12 - P10 feeder add neutral + upsized EGC",
+      "scope": ["E-201", "E-301", "E-501"],
+      "find": "2#4 + #10G THWN-2 Cu",
+      "replace": "3#4 + #8G THWN-2 Cu",
+      "notes": "250.122(B) proportional EGC upsizing for VD-upsized run."
+    },
+    {
+      "comment": "9/12 - P10 compact notation",
+      "scope": ["E-501"],
+      "find": "2#4+#10G",
+      "replace": "3#4+#8G",
+      "notes": ""
+    },
+    {
+      "comment": "9 - Pedestal interior detail stub-up",
+      "scope": ["E-501"],
+      "find": "2#6 + #10G\nTHWN-2 Cu",
+      "replace": "3#6 + #10G\nTHWN-2 Cu",
+      "notes": "Multi-line text note in Section A-A; adjust if the note breaks differently."
+    },
+    {
+      "comment": "10 - Service conductors parallel sets",
+      "scope": ["E-201", "G-001"],
+      "find": "3#350 kcmil Cu THWN-2 + #1/0 N + #1/0 G\nin 3\" PVC SCH 80, U.G., \u00b140 LF",
+      "replace": "(2) PARALLEL SETS, EA: 2#350 kcmil Cu THWN-2 + #1/0 N + #1/0 G\nEA. SET IN 3\" PVC SCH 80, U.G., \u00b140 LF (620 A)",
+      "notes": "VERIFY with EOR: parallel neutral 1/0 min per 310.10(G) OK for calculated max unbalance; EGC in each raceway per 250.122(F)."
+    },
+    {
+      "comment": "10 - Feeder schedule F-SVC row",
+      "scope": ["E-201"],
+      "find": "3#350+#1/0N+#1/0G THWN-2 Cu",
+      "replace": "(2) SETS EA: 2#350+#1/0N+#1/0G Cu",
+      "notes": "Row variant without line break."
+    },
+    {
+      "comment": "11 - GEC size",
+      "scope": ["E-401"],
+      "find": "GEC (SERVICE)\t#10 CU",
+      "replace": "GEC (SERVICE)\t2/0 CU",
+      "notes": "Table 250.66 for parallel 700 kcmil/leg. If service stays single-set 350, use #2 CU. VERIFY against final Comment-10 resolution."
+    },
+    {
+      "comment": "11 - MBJ size",
+      "scope": ["E-401"],
+      "find": "MAIN BONDING JMP\t#10 CU",
+      "replace": "MAIN BONDING JMP\t2/0 CU",
+      "notes": "Table 250.102(C)(1); same VERIFY as GEC."
+    },
+    {
+      "comment": "11 - Riser callouts",
+      "scope": ["E-401"],
+      "find": "NEC #10 Cu\n(NEC 250.66, 555.36)",
+      "replace": "2/0 Cu\n(NEC 250.66 / 250.102(C)(1))",
+      "notes": "Adjust to actual riser text; run dry-run to see exact string."
+    },
+    {
+      "comment": "13 - Demand current",
+      "scope": ["E-301"],
+      "find": "411 A",
+      "replace": "469 A",
+      "notes": "112,450 VA / 240 V = 468.5 A."
+    },
+    {
+      "comment": "13 - G-001 service data demand",
+      "scope": ["G-001"],
+      "find": "109.1 kVA (455 A)",
+      "replace": "112.45 kVA (469 A)",
+      "notes": "Reconciled to E-301 load summary."
+    },
+    {
+      "comment": "13 - G-001 utilization",
+      "scope": ["G-001"],
+      "find": "Service Utilization\t76%",
+      "replace": "Service Utilization\t78%",
+      "notes": "469/600 = 78.1%."
+    },
+    {
+      "comment": "16 - Feeder-level GFPE to 100 mA (panel schedule)",
+      "scope": ["E-301"],
+      "find": "2P/50A\t30 mA",
+      "replace": "2P/50A\t100 mA",
+      "notes": "EOR DECISION REQUIRED: feeder GFPE 100 mA (Art. 555 max) to coordinate with 30 mA receptacle-level GFPE in pedestals. Receptacle 30 mA notes stay untouched."
+    },
+    {
+      "comment": "16 - Single-line feeder breakers",
+      "scope": ["E-201"],
+      "find": "50A/2P\nGFPE 30mA",
+      "replace": "50A/2P\nGFPE 100mA",
+      "notes": "Same EOR decision. The '10x SHORE POWER PEDESTAL BRANCHES 50A/2P + 30 mA GFPE EACH' summary note needs matching edit -- dry-run will surface it."
+    },
+    {
+      "comment": "19 - Meter form",
+      "scope": ["G-001", "E-201", "E-301"],
+      "find": "Form 9S",
+      "replace": "Form 4S (VERIFY W/ DUKE)",
+      "notes": "9S is a 3-phase form; 240V 1-ph 3W CT service is typically 4S."
+    },
+    {
+      "comment": "19 - Cover sheet OCR-variant",
+      "scope": ["G-001"],
+      "find": "Form 95",
+      "replace": "Form 4S (VERIFY W/ DUKE)",
+      "notes": "Catches the typo variant if it exists in the model."
+    }
+  ],
+  "new_notes": [
+    {
+      "comment": "15 - Leakage current measurement device",
+      "scope": "E-301",
+      "text": "LK-1  LEAKAGE CURRENT MEASUREMENT DEVICE PER NEC 2020 555.35 --- AVAILABLE AT MARINA OFFICE; USED TO TEST EACH BOAT PRIOR TO SHORE POWER CONNECTION. (OR PEDESTAL-INTEGRAL LEAKAGE INDICATION/ALARM --- COORDINATE W/ PEDESTAL MFR.)",
+      "notes": "Script appends as a new TextNote near the equipment schedule; position by picked point."
+    },
+    {
+      "comment": "17 - Electrical datum plane",
+      "scope": "E-501",
+      "text": "ELECTRICAL DATUM PLANE (NEC 555): 2'-0\" ABOVE HIGHEST HIGH TIDE = _____ FT NAVD88 (SURVEYOR TO CONFIRM). PEDESTAL RECEPTACLES MIN 12\" ABOVE DOCK DECK AND ABOVE DATUM PLANE.",
+      "notes": "Blank to be filled from tidal datum; place adjacent to pedestal elevation detail."
+    }
+  ],
+  "manual_items": [
+    "Comment 7: platform structural detail -- new drafting view/detail, not text.",
+    "Comment 9: if the single-line shows conductor count graphically (tick marks), add neutral tick manually.",
+    "Comment 18: pedestal-to-dock anchorage detail -- new detail.",
+    "Comment 3: add rhys-wade COA number to titleblock family (shared param on titleblock).",
+    "Comment 6/7: E-101 equipment mounting elevations -- add spot elevations/leaders manually."
+  ]
+}
