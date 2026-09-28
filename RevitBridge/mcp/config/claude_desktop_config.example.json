@@ -1,0 +1,14 @@
+{
+  "_comment": "Merge the 'revit-bridge' entry into %APPDATA%\\Claude\\claude_desktop_config.json next to the existing 'rsap' entry, then fully quit and reopen Claude Desktop. If OneDrive locks files in .venv, create the venv at C:\\Users\\jplor\\source\\revit-bridge-venv and point 'command' there (keep PYTHONPATH).",
+  "mcpServers": {
+    "revit-bridge": {
+      "command": "C:\\Users\\jplor\\OneDrive\\Business\\Documents\\CODE\\REVIT PLUGINS\\RevitBridge\\mcp\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "revit_bridge_mcp"],
+      "env": {
+        "PYTHONPATH": "C:\\Users\\jplor\\OneDrive\\Business\\Documents\\CODE\\REVIT PLUGINS\\RevitBridge\\mcp\\src",
+        "REVIT_BRIDGE_TIMEOUT_S": "60",
+        "REVIT_BRIDGE_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}

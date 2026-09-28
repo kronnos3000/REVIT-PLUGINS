@@ -47,3 +47,10 @@ $RECYCLE.BIN/
 /*.docx
 /*.pdf
 /*.xlsx
+
+# RevitBridge: build staging, Python venv/caches (the MCP server is dev/Claude-side only)
+RevitBridge/dist/
+RevitBridge/mcp/.venv/
+**/__pycache__/
+.pytest_cache/
+*.egg-info/

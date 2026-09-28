@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+
+  <!-- Application (pipe server + ribbon setup) -->
+  <AddIn Type="Application">
+    <Name>CCorp RevitBridge</Name>
+    <Assembly>RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridge.App</FullClassName>
+    <ClientId>B4F0D999-9103-4D92-A329-AC90703BBC13</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Bridge On/Off Command -->
+  <AddIn Type="Command">
+    <Name>Bridge On/Off</Name>
+    <Assembly>RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridge.UI.ToggleBridgeCommand</FullClassName>
+    <ClientId>FC179E21-52DD-4C1A-991C-3BC0F2227E3A</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Bridge Status Command -->
+  <AddIn Type="Command">
+    <Name>Bridge Status</Name>
+    <Assembly>RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridge.UI.StatusCommand</FullClassName>
+    <ClientId>709975DF-832F-4F0D-AFEF-107A84BE4230</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+  <!-- Open Log Command -->
+  <AddIn Type="Command">
+    <Name>Open Bridge Log</Name>
+    <Assembly>RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridge.UI.OpenLogCommand</FullClassName>
+    <ClientId>5214F64E-B3B1-44AA-A6BE-DA48FF959AAB</ClientId>
+    <VendorId>CCorp</VendorId>
+    <VendorDescription>Construction Corps Engineering Tools</VendorDescription>
+  </AddIn>
+
+</RevitAddIns>
